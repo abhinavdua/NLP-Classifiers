@@ -19,7 +19,8 @@ correct_neg_mem = 0.0
 
 cursor_dev = db.final_data3.find({}, { "_id": 0 }).limit(5000)
 
-def generateFeatureVector(review):
+#Feature Vector Generation
+def generateFeatureVector(review): 
     reviewfeatureVector = []
     review_words = review.split()
     for word in review_words:
@@ -50,7 +51,8 @@ f.close()
 f = open('featureList.pickle', 'rb')
 featureList = pickle.load(f)
 f.close()
- 
+
+#Prediction the sentiment using MegaM
 for row in cursor_dev:
     review = row['restaurant']['review']
     if row['restaurant']['verdict'] == "Positive":

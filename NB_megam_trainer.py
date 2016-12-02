@@ -14,6 +14,7 @@ featureList = []
 
 cursor_train = db.final_data3.find({}, { "_id": 0 }).limit(10000)
 
+# Remove Duplicates from File
 def removeDuplicatesFromList(myList)
     newList = list(set(myList))
     return newList
@@ -54,13 +55,13 @@ for row in cursor_train:
 featureList = removeDuplicatesFromList(featureList)
 trainFeatureSet = nltk.classify.util.apply_features(fetch_features, reviews)
 
-#Code for Maximum Entropy Classifier using MEGAM algorithm
+#Maximum Entropy Classifier using MEGAM algorithm
 megamClassifier = nltk.classify.maxent.MaxentClassifier.train(trainFeatureSet, 'MEGAM', trace=3,encoding=None, labels=None, gaussian_prior_sigma=0, max_iter = 50)
 f = open('megamClassifier.pickle', 'wb')
 pickle.dump(megamClassifier, f)
 f.close()
 
-#Code for Naive Bayes Classifier
+#Naive Bayes Classifier
 naiveBayesClassifier = nltk.NaiveBayesClassifier.train(trainFeatureSet)
 f = open('naiveBayesClassifier.pickle', 'wb')
 pickle.dump(naiveBayesClassifier, f)
