@@ -14,6 +14,7 @@ featureList = []
 
 cursor_train = db.final_data3.find({}, { "_id": 0 }).limit(10000)
 
+#Below function generates base SVM vector with values of all features set as zero
 def generateEmptyfeatureDict()
     featureDict = {}
     for word in featureList
@@ -49,7 +50,7 @@ def generateFeatureVector(review):
         if (word in stopWords):
             continue
         else:
-            final_word = re.search(r"^[a-zA-Z][a-zA-Z0-9]*$", word)
+            final_word = re.search(r"^[a-zA-Z][a-zA-Z0-9]*$", word) #remove words not starting with an alphanumeric character
             if(final_word is None):
                 continue
             else:

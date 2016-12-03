@@ -13,12 +13,14 @@ featureList = []
 
 cursor_dev = db.final_data3.find({}, { "_id": 0 }).limit(5000)
 
+#Below function generates base SVM vector with values of all features set as zero
 def generateEmptyfeatureDict()
     featureDict = {}
     for word in featureList
         featureDict[word] = 0
     return featureDict
-    
+
+#Generate final SVM vector for all reviews with word count	
 def generateSVMFeatures(reviews)
     SVMfeatureDict = generateEmptyfeatureDict() 
     feature_vector =[]
@@ -91,7 +93,8 @@ for item, item1 in zip(class_labels, lab):
  
 svm_pos = float(class_labels.count(0.0))
 svm_neg = float(class_labels.count(1.0))
- 
+
+#Print evaluation metrics
 precision_pos = float(correct_pos/svm_pos)
 precision_neg = float(correct_neg/svm_neg)
 recall_pos = float(correct_pos/count_pos)
