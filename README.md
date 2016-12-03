@@ -7,4 +7,4 @@ Test Reviews - 5K <br>
 
 # Run Configration
 Python 3 <br>
-Libraries - NLTK, Scikit-learn and Pymongo <br>
+Libraries - NLTK, Scikit-learn, Pickle and Pymongo <br>
